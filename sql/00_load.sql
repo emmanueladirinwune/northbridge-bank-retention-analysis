@@ -30,6 +30,12 @@ SELECT disp_id::INT AS disp_id,
 FROM read_csv('data/raw/card.csv', delim = ';', header = true, all_varchar = true);
 
 CREATE OR REPLACE TABLE loan AS
-SELECT account_id::INT AS account_id,
-       strptime(date, '%y%m%d')::DATE AS granted
+SELECT loan_id::INT AS loan_id,
+       account_id::INT AS account_id,
+       strptime(date, '%y%m%d')::DATE AS granted,
+       amount::DOUBLE AS amount,
+       duration::INT AS duration,
+       payments::DOUBLE AS payments,
+       status
 FROM read_csv('data/raw/loan.csv', delim = ';', header = true, all_varchar = true);
+
